@@ -4,6 +4,7 @@
     <div class="mb-3">
       <%= form.text_field :email, class: "form-control mb-3", placeholder: "Email" %>
     </div>
+    <%# This is one of many ways to implement radio buttons in rails %>
     <div class="form-check">
       <%= form.radio_button :role, "Employee", checked: true, class: "form-check-input" %>
       <%= form.label :role, "Employee", value: "Employee", class: "form-check-label" %>

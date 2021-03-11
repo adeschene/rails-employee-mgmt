@@ -1,20 +1,25 @@
-<div class="card mb-3 mt-3">
-  <div class="card-header">
+<div class="card border-dark text-dark bg-light mb-3 mt-3">
+  <%# Print company name, employee counts, and edit/delete btns %>
+  <div class="card-header border-dark">
     <div class="d-flex justify-content-between align-items-center">
       <div><h2><%= @company.name %></h2></div>
-      <%= render "links", company: @company %>
+      <%= render "links" %>
     </div>
     <div class="">
       <strong>Associates</strong>: <%= @company.count.employee_count %> -
       <strong>Managers</strong>: <%= @company.count.manager_count %>
     </div>
   </div>
+  <%# List all employees w/delete btns %>
   <div class="card-body">
-    <div class="mb-3">
+    <div class="list-group">
       <%= render @company.employees %>
     </div>
-    <div class="card">
-      <div class="card-header text-center">
+  </div>
+  <%# Display employee form in card footer %>
+  <div class="card-footer border-dark">
+    <div class="card border-dark mt-2 mb-2">
+      <div class="card-header border-dark text-center">
         <h4>Add Employee</h4>
       </div>
       <div class="card-body">
@@ -24,7 +29,7 @@
   </div>
 </div>
 
-<%# Adds a back button at the bottom that takes user back to root page %>
+<%# Adds a back button at the bottom that takes user back to companies page %>
 <div class="container mb-5 text-center">
   <%= link_to "Back", companies_path, class: 'btn btn-dark px-5' %>
 </div>

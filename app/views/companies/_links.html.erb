@@ -1,8 +1,9 @@
+<%# Displays edit and delete btns for a company instance %>
 <div class="">
-  <%= link_to edit_company_path(company), class: 'btn btn-secondary mx-1' do %>
+  <%= link_to edit_company_path(@company), class: 'btn btn-secondary mx-1' do %>
     <i class="bi-pencil"></i>
   <% end %>
-  <%= link_to company_path(company), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-danger mx-1' do %>
+  <%= link_to company_path(@company), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-danger mx-1' do %>
     <i class="bi-trash"></i>
   <% end %>
 </div>

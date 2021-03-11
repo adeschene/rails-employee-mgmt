@@ -1,21 +1,24 @@
-<div class="card mb-3 mt-3">
-  <div class="card-header text-center">
+<div class="card border-dark text-dark bg-light mb-3 mt-3">
+  <div class="card-header border-dark text-center">
     <h2>Employee Tracker</h2>
   </div>
   <div class="card-body">
-    <div class="mb-3">
-      <% @companies.each do |company| %>
-        <%= link_to company, class: "d-flex justify-content-between align-items-center list-group-item list-group-item-action list-group-item-light" do %>
-          <div><h5><%= company.name %></h5></div>
-          <div><strong>Total Employees:</strong> <%= company.count.employee_count + company.count.manager_count %></div>
-        <% end %>
+    <%# Create a list of all companies as clickable links %>
+    <% @companies.each do |company| %>
+      <%= link_to company, class: "d-flex justify-content-between align-items-center list-group-item list-group-item-action list-group-item-light border-dark" do %>
+        <div><h5><%= company.name %></h5></div>
+        <div><strong>Total Employees:</strong> <%= company.count.employee_count + company.count.manager_count %></div>
       <% end %>
-    </div>
-    <div class="card">
-      <div class="card-header text-center">
+    <% end %>
+  </div>
+  <div class="card-footer border-dark">
+    <%# Display a form to add a new company %>
+    <div class="card border-dark mt-2 mb-2">
+      <div class="card-header border-dark text-center">
         <h4>Add Company</h4>
       </div>
       <div class="card-body">
+        <%# If skipping "New" request, we need to give the form a blank company instance directly %>
         <%= render "form", company: Company.new %>
       </div>
     </div>
