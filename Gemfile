@@ -11,6 +11,7 @@ gem 'webpacker', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 gem 'figaro', '~> 1.2'
+gem 'rspec', '~> 3.5'
 
 gem 'bootsnap', '>= 1.4.4', require: false
 
