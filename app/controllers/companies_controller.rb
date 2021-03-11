@@ -1,12 +1,12 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: %i[ show edit update destroy ]
 
-  # GET /companies or /companies.json
+  # GET /companies
   def index
     @companies = Company.all
   end
 
-  # GET /companies/1 or /companies/1.json
+  # GET /companies/1
   def show
   end
 
@@ -19,41 +19,33 @@ class CompaniesController < ApplicationController
   def edit
   end
 
-  # POST /companies or /companies.json
+  # POST /companies
   def create
     @company = Company.new(company_params)
 
-    respond_to do |format|
-      if @company.save
-        format.html { redirect_to @company, notice: "Company was successfully created." }
-        format.json { render :show, status: :created, location: @company }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @company.errors, status: :unprocessable_entity }
-      end
+    if @company.save
+      redirect_to @company, notice: "Company was successfully created."
+    else
+      render :new, alert: "Company creation failed..."
     end
   end
 
-  # PATCH/PUT /companies/1 or /companies/1.json
+  # PATCH/PUT /companies/1
   def update
     respond_to do |format|
       if @company.update(company_params)
-        format.html { redirect_to @company, notice: "Company was successfully updated." }
-        format.json { render :show, status: :ok, location: @company }
+        redirect_to @company, notice: "Company was successfully updated."
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @company.errors, status: :unprocessable_entity }
+        render :edit, alert: "Company update failed..."
       end
     end
   end
 
-  # DELETE /companies/1 or /companies/1.json
+  # DELETE /companies/1
   def destroy
     @company.destroy
-    respond_to do |format|
-      format.html { redirect_to companies_url, notice: "Company was successfully destroyed." }
-      format.json { head :no_content }
-    end
+
+    redirect_to companies_url, notice: "Company was successfully destroyed."
   end
 
   private
