@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root "companies#index"
 
-  resources :companies
-  resources :employees
+  resources :companies do
+    resources :employees
+  end
 end

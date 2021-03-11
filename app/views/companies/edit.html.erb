@@ -1,6 +1,13 @@
-<h1>Editing Company</h1>
+<div class="card mb-3 mt-3">
+  <div class="card-header text-center">
+    <h2>Edit Company</h2>
+  </div>
+  <div class="card-body">
+    <%= render 'form', company: @company %>
+  </div>
+</div>
 
-<%= render 'form', company: @company %>
-
-<%= link_to 'Show', @company %> |
-<%= link_to 'Back', companies_path %>
+<%# Adds a back button at the bottom that takes user back to company show page %>
+<div class="container mb-5 text-center">
+  <%= link_to "Back", @company, class: 'btn btn-dark px-5' %>
+</div>

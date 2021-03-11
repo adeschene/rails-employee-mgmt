@@ -1,27 +1,19 @@
-<%= form_with(model: employee) do |form| %>
-  <% if employee.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
 
-      <ul>
-        <% employee.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<%= form_with model: [@company, @company.employees.build] do |form| %>
+  <div class="form-group h-100 mb-3">
+    <div class="mb-3">
+      <%= form.text_field :email, class: "form-control mb-3", placeholder: "Email" %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
+    <div class="form-check">
+      <%= form.radio_button :role, "Employee", checked: true, class: "form-check-input" %>
+      <%= form.label :role, "Employee", value: "Employee", class: "form-check-label" %>
+    </div>
+    <div class="form-check">
+      <%= form.radio_button :role, "Manager", class: "form-check-input" %>
+      <%= form.label :role, "Manager", value: "Manager", class: "form-check-label" %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :role %>
-    <%= form.text_field :role %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-group ms-2">
+    <%= form.submit "Submit", class: "btn btn-secondary" %>
   </div>
 <% end %>

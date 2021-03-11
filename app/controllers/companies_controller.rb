@@ -3,16 +3,11 @@ class CompaniesController < ApplicationController
 
   # GET /companies
   def index
-    @companies = Company.all
+    @companies = Company.all.order("created_at")
   end
 
   # GET /companies/1
   def show
-  end
-
-  # GET /companies/new
-  def new
-    @company = Company.new
   end
 
   # GET /companies/1/edit
@@ -24,20 +19,18 @@ class CompaniesController < ApplicationController
     @company = Company.new(company_params)
 
     if @company.save
-      redirect_to @company, notice: "Company was successfully created."
+      redirect_to companies_url, notice: "Company was successfully created."
     else
-      render :new, alert: "Company creation failed..."
+      redirect_to companies_url, alert: "Company creation failed..."
     end
   end
 
   # PATCH/PUT /companies/1
   def update
-    respond_to do |format|
-      if @company.update(company_params)
-        redirect_to @company, notice: "Company was successfully updated."
-      else
-        render :edit, alert: "Company update failed..."
-      end
+    if @company.update(company_params)
+      redirect_to @company, notice: "Company was successfully updated."
+    else
+      render :edit, alert: "Company update failed..."
     end
   end
 
@@ -45,7 +38,7 @@ class CompaniesController < ApplicationController
   def destroy
     @company.destroy
 
-    redirect_to companies_url, notice: "Company was successfully destroyed."
+    redirect_to companies_url, notice: "Company was successfully deleted."
   end
 
   private

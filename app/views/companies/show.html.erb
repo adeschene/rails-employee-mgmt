@@ -1,9 +1,30 @@
-<p id="notice"><%= notice %></p>
+<div class="card mb-3 mt-3">
+  <div class="card-header">
+    <div class="d-flex justify-content-between align-items-center">
+      <div><h2><%= @company.name %></h2></div>
+      <%= render "links", company: @company %>
+    </div>
+    <div class="">
+      <strong>Associates</strong>: <%= @company.count.employee_count %> -
+      <strong>Managers</strong>: <%= @company.count.manager_count %>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="mb-3">
+      <%= render @company.employees %>
+    </div>
+    <div class="card">
+      <div class="card-header text-center">
+        <h4>Add Employee</h4>
+      </div>
+      <div class="card-body">
+        <%= render "employees/form" %>
+      </div>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @company.name %>
-</p>
-
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Back', companies_path %>
+<%# Adds a back button at the bottom that takes user back to root page %>
+<div class="container mb-5 text-center">
+  <%= link_to "Back", companies_path, class: 'btn btn-dark px-5' %>
+</div>

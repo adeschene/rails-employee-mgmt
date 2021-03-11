@@ -1,27 +1,25 @@
-<p id="notice"><%= notice %></p>
+<div class="card mb-3 mt-3">
+  <div class="card-header text-center">
+    <h2>Employee Tracker</h2>
+  </div>
+  <div class="card-body">
+    <div class="mb-3">
+      <% @companies.each do |company| %>
+        <%= link_to company, class: "d-flex justify-content-between align-items-center list-group-item list-group-item-action list-group-item-light" do %>
+          <div><h5><%= company.name %></h5></div>
+          <div><strong>Total Employees:</strong> <%= company.count.employee_count + company.count.manager_count %></div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="card">
+      <div class="card-header text-center">
+        <h4>Add Company</h4>
+      </div>
+      <div class="card-body">
+        <%= render "form", company: Company.new %>
+      </div>
+    </div>
+  </div>
+</div>
 
-<h1>Companies</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @companies.each do |company| %>
-      <tr>
-        <td><%= company.name %></td>
-        <td><%= link_to 'Show', company %></td>
-        <td><%= link_to 'Edit', edit_company_path(company) %></td>
-        <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Company', new_company_path %>
